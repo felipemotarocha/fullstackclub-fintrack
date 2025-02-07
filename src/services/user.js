@@ -18,7 +18,13 @@ export const UserService = {
       email: input.email,
       password: input.password,
     })
-    return response.data
+    return {
+      id: response.data.id,
+      firstName: response.data.first_name,
+      lastName: response.data.last_name,
+      email: response.data.email,
+      tokens: response.data.tokens,
+    }
   },
   /**
    * Faz o login de um usuário.
@@ -33,7 +39,13 @@ export const UserService = {
       email: input.email,
       password: input.password,
     })
-    return response.data
+    return {
+      id: response.data.id,
+      firstName: response.data.first_name,
+      lastName: response.data.last_name,
+      email: response.data.email,
+      tokens: response.data.tokens,
+    }
   },
   /**
    * Retorna os dados do usuário autenticado.
@@ -42,6 +54,15 @@ export const UserService = {
    */
   me: async () => {
     const response = await protectedApi.get('/users/me')
+    return {
+      id: response.data.id,
+      firstName: response.data.first_name,
+      lastName: response.data.last_name,
+      email: response.data.email,
+    }
+  },
+  getBalance: async () => {
+    const response = await protectedApi.get('/users/me/balance')
     return response.data
   },
 }
